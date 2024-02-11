@@ -3,7 +3,7 @@
         "genre": "transcript",
         "document_id": "transcript_Bmr022",
         "sent": "Is it on?",
-        "boundary": "no"
+        "boundary": "yes"
     },
     {
         "genre": "transcript",
@@ -63,13 +63,13 @@
         "genre": "transcript",
         "document_id": "transcript_Bmr022",
         "sent": "Yeah.",
-        "boundary": "yes"
+        "boundary": "no"
     },
     {
         "genre": "transcript",
         "document_id": "transcript_Bmr022",
         "sent": "Um -",
-        "boundary": "no"
+        "boundary": "yes"
     },
     {
         "genre": "transcript",
@@ -99,13 +99,13 @@
         "genre": "transcript",
         "document_id": "transcript_Bmr022",
         "sent": "Mm-hmm.",
-        "boundary": "yes"
+        "boundary": "no"
     },
     {
         "genre": "transcript",
         "document_id": "transcript_Bmr022",
         "sent": "Mm-hmm.",
-        "boundary": "no"
+        "boundary": "yes"
     },
     {
         "genre": "transcript",
@@ -3693,13 +3693,13 @@
         "genre": "transcript",
         "document_id": "transcript_Bmr022",
         "sent": "Hmm.",
-        "boundary": "yes"
+        "boundary": "no"
     },
     {
         "genre": "transcript",
         "document_id": "transcript_Bmr022",
         "sent": "O_K.",
-        "boundary": "no"
+        "boundary": "yes"
     },
     {
         "genre": "transcript",
@@ -5229,13 +5229,13 @@
         "genre": "transcript",
         "document_id": "transcript_Bmr022",
         "sent": "Hmm.",
-        "boundary": "yes"
+        "boundary": "no"
     },
     {
         "genre": "transcript",
         "document_id": "transcript_Bmr022",
         "sent": "another issue on file reorganization is, uh,",
-        "boundary": "no"
+        "boundary": "yes"
     },
     {
         "genre": "transcript",
@@ -5427,7 +5427,7 @@
         "genre": "transcript",
         "document_id": "transcript_Bed003",
         "sent": "Nice.",
-        "boundary": "no"
+        "boundary": "yes"
     },
     {
         "genre": "transcript",
@@ -5877,13 +5877,13 @@
         "genre": "transcript",
         "document_id": "transcript_Bed003",
         "sent": "Perfect.",
-        "boundary": "yes"
+        "boundary": "no"
     },
     {
         "genre": "transcript",
         "document_id": "transcript_Bed003",
         "sent": "So then the features we decided - or we",
-        "boundary": "no"
+        "boundary": "yes"
     },
     {
         "genre": "transcript",
@@ -11733,13 +11733,13 @@
         "genre": "transcript",
         "document_id": "transcript_Bed003",
         "sent": "So.",
-        "boundary": "yes"
+        "boundary": "no"
     },
     {
         "genre": "transcript",
         "document_id": "transcript_Bed003",
         "sent": "So.",
-        "boundary": "no"
+        "boundary": "yes"
     },
     {
         "genre": "transcript",
@@ -13959,13 +13959,13 @@
         "genre": "transcript",
         "document_id": "transcript_Bed003",
         "sent": "Always fun.",
-        "boundary": "yes"
+        "boundary": "no"
     },
     {
         "genre": "transcript",
         "document_id": "transcript_Bed003",
         "sent": "But it's a, um,",
-        "boundary": "no"
+        "boundary": "yes"
     },
     {
         "genre": "transcript",
@@ -14997,6 +14997,6 @@
         "genre": "transcript",
         "document_id": "transcript_Bed003",
         "sent": "O_K. Switching o-",
-        "boundary": "yes"
+        "boundary": "no"
     }
 ]
