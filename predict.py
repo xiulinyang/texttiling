@@ -22,19 +22,21 @@ import torch.nn.functional as F
 from transformers import BertModel
 from sklearn.metrics import classification_report
 from transformers import DebertaV2Model, AutoTokenizer
+import json
+
 tokenizer = AutoTokenizer.from_pretrained("microsoft/deberta-v3-base")
 model =DebertaV2Model.from_pretrained("microsoft/deberta-v3-base")
 
 
 
-
+INPUT=''
 MAX_LEN=400 #maximum length of the input
 loss_fn = nn.BCEWithLogitsLoss()  # don't change
-EPOCH = 3
+EPOCH = 2
 HIDDEN_SIZE=200
 LEARNING_RATE = 5e-6
 BS = 4 #batch size
-DROPOUT =0.01
+DROPOUT =0.05
 EPSILON = 1e-8
 WINDOW_SIZE=2
 NUM_WARMUP = 1000
@@ -73,10 +75,10 @@ def data_preprocess(data, context_window):
         data_f = json.load(data_file)
         print(len(data_f))
         for i, f in enumerate(data_f):
-            sentence = f['sent']
+            sentence = f['sentence']
             if i + context_window < len(data_f):
-                sentencea = data_f[i+1]['sent']
-                sentenceaa= data_f[i+2]['sent']
+                sentencea = data_f[i+1]['sentence']
+                sentenceaa= data_f[i+2]['sentence']
             else:
                 sentencea = ' <eod>'
                 sentenceaa = ' <eod>'
@@ -84,12 +86,12 @@ def data_preprocess(data, context_window):
                 input = '<sod> '* (context_window-i) + '<sos>'+sentence + '<eos>' + sentencea + sentenceaa
 
             else:
-                sentencep = data_f[i-1]['sent']
-                sentencepp = data_f[i-2]['sent']
+                sentencep = data_f[i-1]['sentence']
+                sentencepp = data_f[i-2]['sentence']
                 input = sentencepp+' '+sentencep+ '<sos>'+sentence + '<eos>' + sentencea + sentenceaa
             if i>TRAINING_SAMPLE:
                 break
-            label = label_num_pair[f['boundary']]
+            label = label_num_pair[int(f['boundary-coarse'])]
             inputs.append(input)
             labels.append(label)
     return inputs, labels
@@ -201,7 +203,7 @@ def initialize_model(model, epochs=EPOCH):
                       )
 
     # Total number of training steps
-    total_steps = len(train_dataloader) * epochs
+    total_steps = len(dev_dataloader) * epochs
 
     # Set up the learning rate scheduler
     scheduler = get_linear_schedule_with_warmup(optimizer,
@@ -376,22 +378,16 @@ def bert_predict(model, test_dataloader):
 if __name__=='__main__':
     set_seed(42)
     # prepare data
-    label_num_pair = {"no":0, "yes":1}
-    train_input, train_labels = data_preprocess('recleaned_train_data.json', WINDOW_SIZE)
-    dev_input, dev_labels = data_preprocess('recleaned_test_data.json',WINDOW_SIZE)
+    label_num_pair = {0:0, 1:1}
+    dev_input, dev_labels = data_preprocess('New-York-City.json',WINDOW_SIZE)
 
-    train_input_ids, train_attention_masks = preprocessing_for_bert(train_input)
     dev_input_ids, dev_attention_masks = preprocessing_for_bert(dev_input)
 
     # Convert other data types to torch.Tensor
-    train_labels_ID = torch.tensor(train_labels)
     dev_labels_ID = torch.tensor(dev_labels)
 
 
     # Create the DataLoader for our training set
-    train_data = TensorDataset(train_input_ids, train_attention_masks, train_labels_ID)
-    train_sampler = RandomSampler(train_data)
-    train_dataloader = DataLoader(train_data, sampler=train_sampler, batch_size=BS)
 
     # Create the DataLoader for our validation set
     dev_data = TensorDataset(dev_input_ids, dev_attention_masks, dev_labels_ID)
@@ -402,21 +398,12 @@ if __name__=='__main__':
 
 
     bert_classifier, optimizer, scheduler = initialize_model(model,epochs=EPOCH)
-    train(bert_classifier, train_dataloader, dev_dataloader, epochs=EPOCH, evaluation=True)
-    pred = bert_predict(bert_classifier, dev_dataloader)
-    with open('model_preds.txt', 'w') as wf:
-      wf.write(str(pred))
 
-# Save the model state and optimizer state
-    torch.save({
-        'model_state_dict': bert_classifier.state_dict(),
-        'optimizer_state_dict': optimizer.state_dict(),
-        # Include other necessary items like epoch number, loss, etc.
-    }, MODEL_SAVE_PATH)
-    # load and infer
     model_load_path = MODEL_SAVE_PATH
     checkpoint = torch.load(model_load_path, map_location=device)
     bert_classifier.load_state_dict(checkpoint['model_state_dict'])
     bert_classifier.to(device)  # Move model to the right device
     bert_classifier.eval()  # Set the model to evaluation mode for predictionsptimizer.load_state_dict(checkpoint['optimizer_state_dict']t
     pred = bert_predict(bert_classifier, dev_dataloader)
+    with open('model_preds.txt', 'w') as wf:
+        wf.write(str(pred))
