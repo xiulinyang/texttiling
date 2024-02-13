@@ -3,6 +3,16 @@ Group project for the course Computational Discourse Modeling
 
 Devika, Eliza, Xiulin, and Jingni
 
+## Link to slides presentation 
+- https://docs.google.com/presentation/d/18ouy0a7sPB47ktmkNpevgSBXbSa7JEwuBh2MA7QcwSQ/edit?usp=sharing
+  
+
+## How to run 
+- Create a virtual environment with ```conda create -n texttiling python=3.8``` and install all the dependencies.
+- To train the model, run ```python deberta.py```
+- To get the predictions, run ```python predict.py``` 
+
+
 ## Data
 General: From Brown Corpus
 
@@ -24,9 +34,3 @@ Wiki: From Wiki-727K Corpus
 
 - 2500 sentences from English Wikipedia documents, and their subsection boundaries
 - 290 subsection boundaries 
-
-
-## How to run 
-- Create a virtual environment with ```conda create -n texttiling python=3.8``` and install all the dependencies.
-- To train the model, run ```python deberta.py```
-- To get the predictions, run ```python predict.py``` 
