@@ -375,11 +375,31 @@ def bert_predict(model, test_dataloader):
         report.write(final_report)
     return predictions
 
+
+import json
+
+def tsv2json(input_file,output_file):
+    arr = []
+    file = open(input_file, 'r')
+    a = file.readline()
+    titles = [t.strip() for t in a.split('\t')]
+    for line in file:
+        d = {}
+        for t, f in zip(titles, line.split('\t')):
+            d[t] = f.strip()
+
+        arr.append(d)
+
+    with open(output_file, 'w', encoding='utf-8') as output_file:
+        output_file.write(json.dumps(arr, indent=4))
+
+tsv2json('cusi-gish-luo-sciacca_tiling/vlog_data/vlog9_my-first-cruise-of-royal-caribbean.tsv', 'Paris.json')
+
 if __name__=='__main__':
     set_seed(42)
     # prepare data
     label_num_pair = {0:0, 1:1}
-    dev_input, dev_labels = data_preprocess('New-York-City.json',WINDOW_SIZE)
+    dev_input, dev_labels = data_preprocess('Paris.json',WINDOW_SIZE)
 
     dev_input_ids, dev_attention_masks = preprocessing_for_bert(dev_input)
 
