@@ -46,6 +46,15 @@ Pre-processing the corpus data was done in four scripts in the preprocessing fol
  
 For each respective dataset (literature, wiki, transcript, and general), we looped through each document, tokenizing it into sentences, checking for empty sections. In wiki, section headings were removed. Each sentence was appended to a dictionary, with the structure: {‘genre’: ‘genre’, ‘document_id’:  ‘genre+document_id’, ‘sent’: ‘single sentence’, ‘boundary’: ‘yes or no’}. The boundary value was ‘yes’ if the sentence occurred at the start of a new document, or was the sentence directly after a subsection delineator. Dictionaries for each genre were appended to a list, and stored in a tsv file. 
 
-### Creation of balanced and by-genre datasets: 
+### Creation of balanced dataset: 
 
+- script: test_train_balanced_10000.ipynb
+
+Balanced dataset was created by randomly shuffling documents within each of the four genre-specific lists of dictionaries, maintaining the internal order of dictionaries (i.e., sentences) with the same document ID. 
+
+The four genre lists were then split into train and test sets, using a 85-15 train-test split. 
+
+The four train sets were combined and randomly shuffled, maintaining the internal order within documents. The four tests sets were combined in the same fashion. This resulted in a balanced train set, containing 2125 dictionaries from each genre, and a balanced test set, containing 375 dictionaries from each genre. 
+
+### Creation of by-genre datasets: 
 
