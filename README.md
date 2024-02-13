@@ -38,7 +38,11 @@ Wiki: From Wiki-727K Corpus
 
 ## Data pre-processing: 
 
-Pre-processing the corpus data was done in four scripts in the preprocessing folder: preprocess_literature.ipynb, preprocess_wiki.ipynb, preprocess_transcript.ipynb, preprocess.py (general) 
+Pre-processing the corpus data was done in four scripts in the preprocessing folder: 
+- preprocess_literature.ipynb
+- preprocess_wiki.ipynb
+- preprocess_transcript.ipynb
+-  preprocess.py (general) 
  
 For each respective dataset (literature, wiki, transcript, and general), we looped through each document, tokenizing it into sentences, checking for empty sections. In wiki, section headings were removed. Each sentence was appended to a dictionary, with the structure: {‘genre’: ‘genre’, ‘document_id’:  ‘genre+document_id’, ‘sent’: ‘single sentence’, ‘boundary’: ‘yes or no’}. The boundary value was ‘yes’ if the sentence occurred at the start of a new document, or was the sentence directly after a subsection delineator. Dictionaries for each genre were appended to a list, and stored in a tsv file. 
 
