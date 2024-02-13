@@ -377,8 +377,8 @@ if __name__=='__main__':
     set_seed(42)
     # prepare data
     label_num_pair = {"no":0, "yes":1}
-    train_input, train_labels = data_preprocess('recleaned_train_data.json', WINDOW_SIZE)
-    dev_input, dev_labels = data_preprocess('recleaned_test_data.json',WINDOW_SIZE)
+    train_input, train_labels = data_preprocess('withlit_balance_train_10000.json', WINDOW_SIZE)
+    dev_input, dev_labels = data_preprocess('withlit_balance_test_10000.json',WINDOW_SIZE)
 
     train_input_ids, train_attention_masks = preprocessing_for_bert(train_input)
     dev_input_ids, dev_attention_masks = preprocessing_for_bert(dev_input)
