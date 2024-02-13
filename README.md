@@ -57,4 +57,20 @@ The four genre lists were then split into train and test sets, using a 85-15 tra
 The four train sets were combined and randomly shuffled, maintaining the internal order within documents. The four tests sets were combined in the same fashion. This resulted in a balanced train set, containing 2125 dictionaries from each genre, and a balanced test set, containing 375 dictionaries from each genre. 
 
 ### Creation of by-genre datasets: 
+By-genre datasets were created by splitting the balanced dataset, described above, into different genre splits. 
+
+- Training1: literature data, general data, transcript data
+- Test1: wiki data 
+
+- Training2: wiki data, literature data, general data
+- Test2: transcript data
+
+- Training3: transcript data, wiki data, literature data
+- Test3: general data
+
+- Training4: general data, transcript data, wiki data
+- Test4: literature data
+
+This allowed us to test the generalizability of our model to unseen genres. 
+
 
