@@ -9,8 +9,8 @@ Devika, Eliza, Xiulin, and Jingni
 
 ## How to run 
 - Create a virtual environment with ```conda create -n texttiling python=3.8``` and install all the dependencies.
-- To train the model, run ```python deberta.py```
-- To get the predictions, run ```python predict.py``` 
+- To train the model, run ```python deberta.py``` (please change the corresponding input file directories if you want to fine-tune the model on different datasets)
+- To get the predictions, run ```python predict.py``` (please change the corresponding input file directories)
 
 
 ## Data
